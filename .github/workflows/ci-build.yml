@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build project
-        run: dotnet build ${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj -c Release -o content
+        run: dotnet build ${{ env.PROJECT_NAME }}.csproj -c Release -o content
 
       - name: Archive build output
         uses: actions/upload-artifact@v3
