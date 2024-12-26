@@ -15,10 +15,10 @@ namespace PromoCodeFactory.DataAccess.Migrations
                 name: "customers",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    first_name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    last_name = table.Column<string>(type: "TEXT", maxLength: 70, nullable: false),
-                    email = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    first_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    last_name = table.Column<string>(type: "character varying(70)", maxLength: 70, nullable: false),
+                    email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,8 +29,8 @@ namespace PromoCodeFactory.DataAccess.Migrations
                 name: "preferences",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false)
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,9 +41,9 @@ namespace PromoCodeFactory.DataAccess.Migrations
                 name: "roles",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    name = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
-                    description = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true)
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -54,8 +54,8 @@ namespace PromoCodeFactory.DataAccess.Migrations
                 name: "customer_preference",
                 columns: table => new
                 {
-                    customer_id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    preference_id = table.Column<Guid>(type: "TEXT", nullable: false)
+                    customer_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    preference_id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,12 +78,12 @@ namespace PromoCodeFactory.DataAccess.Migrations
                 name: "employees",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    first_name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    last_name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    email = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    role_id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    applied_promocodes_count = table.Column<int>(type: "INTEGER", nullable: false)
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    first_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    last_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    role_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    applied_promocodes_count = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,15 +100,16 @@ namespace PromoCodeFactory.DataAccess.Migrations
                 name: "promo_codes",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    code = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    service_info = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true),
-                    begin_date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    end_date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    customer_id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    partner_name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
-                    partner_manager_id = table.Column<Guid>(type: "TEXT", nullable: true),
-                    preference_id = table.Column<Guid>(type: "TEXT", nullable: true)
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    code = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    service_info = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
+                    begin_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    end_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    customer_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    partner_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    new_test_column = table.Column<string>(type: "text", nullable: true),
+                    partner_manager_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    preference_id = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {

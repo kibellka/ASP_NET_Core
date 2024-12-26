@@ -38,10 +38,10 @@ namespace PromoCodeFactory.WebHost
                 //dbContext.Database.EnsureDeleted();
                 //dbContext.Database.EnsureCreated();
 
-                //dbContext.AddRange(FakeDataFactory.Employees);
-                //dbContext.AddRange(FakeDataFactory.Customers);
-                //dbContext.AddRange(FakeDataFactory.Preferences);
-                //dbContext.SaveChanges();
+                dbContext.AddRange(FakeDataFactory.Employees);
+                dbContext.AddRange(FakeDataFactory.Customers);
+                dbContext.AddRange(FakeDataFactory.Preferences);
+                dbContext.SaveChanges();
             }
         }
     }

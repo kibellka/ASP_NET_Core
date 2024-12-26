@@ -1,0 +1,26 @@
+services:
+
+  promocode-factory-db:
+    image: "postgres:17.2"
+    container_name: 'promocode-factory-db'
+    restart: always 
+    ports:
+      - 5436:5432
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  promocode-factory-api:
+    build: src/
+    container_name: 'promocode-factory-api'
+    restart: always
+    ports:
+      - "5000:8080"
+    environment:
+      - "ConnectionStrings:PostgresDb=Host=promocode-factory-db;Database=promocode_factory;Username=postgres;Password=postgres"          
+    depends_on: 
+      - promocode-factory-db
+      
+networks:
+  myLocalNetwork:
+    driver: bridge
